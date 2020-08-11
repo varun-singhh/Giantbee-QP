@@ -1,4 +1,6 @@
 from flask import Flask, render_template, make_response,request
+
+
 app = Flask(__name__)
 
 
@@ -25,7 +27,7 @@ def form_input():
 @app.route('/index') 
 def pdf_template():
 	
-	return render_template('pdf_template.html',Q1=Q1,x=len(Q1),im=im,y=len(im),colname=colname,logo=logo)
+	return render_template('pdf_template.html',Q1=Q1,x=len(Q1),im=im,y=len(im),colname=colname,logo=logo,head=head,mark=mark)
 @app.route('/new',) 
 def new():
 	Q1.clear()
@@ -37,8 +39,12 @@ def log():
 	if request.method == 'POST':
 		global colname
 		global logo
+		global head
+		global mark
 		colname=request.form.get('colname')
 		logo=request.form.get('logo')
+		head=request.form.get('head')
+		mark=request.form.get('mark')
 		return render_template('form.html',c=colname,l=logo)
 	return render_template('front.html')
 if __name__ == '__main__':
